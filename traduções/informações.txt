@@ -1,0 +1,255 @@
+                                        SINTAXE DE PORTUGOL TRADUZIDA PARA C
+ 
+se = if
+senao = else 
+inteiro = int 
+cadeia = char[] para colocar o máximo de carácter na variável
+lógico = bool - verdadeiro/falso ou  false/true 
+real = float/double
+enquanto = while
+para = for
+faça enquanto = do while
+escolha = switch
+caso = case
+pare = break
+retorne = return
+funcao = function
+
+escreva = printf
+leia = scanf
+vazio = void
+inicio = main
+quando quiser que a função volte um valor específicos, criar uma função com tipo de dados deficidos
+a vazia nao retorna 
+
+SE FOR INTEIRO DECIMAL OU CARÁCTERE SOZINHO PRECISA COLOCAR O & DEPOIS DA VARIÁVEL
+
+                                      // COISAS PARA SEMPRE USAR E RELEMBRAR
+-------------------------------------------------------------------------------------------------------------
+PORTUGOL                         C
+-------------------------------------------------------------------------------------------------------------
+inteiro                          int
+real                             float
+caracter                         char
+cadeia                           char nome[100]
+logico                           bool
+
+verdadeiro                       true
+falso                            false
+
+escreva()                        printf()
+leia()                           scanf()
+ 
+se                               if
+senao se                         else if
+senao                            else
+
+escolha                          switch
+caso                             case
+caso contrario                   default
+pare                             break
+
+enquanto                         while
+faca...enquanto                  do...while
+para                             for
+
+funcao                           function
+retorne                          return
+vazio/sem retorno                void
+
+E                                &&
+OU                               ||
+NAO                              !
+
+igual                            ==
+diferente                        !=
+maior                            >
+menor                            <
+maior ou igual                   >=
+menor ou igual                   <=
+
+somar                            +
+subtrair                         -
+multiplicar                      *
+dividir                          /
+resto da divisao                 %
+
+incrementar 1                   ++
+decrementar 1                   --
+-------------------------------------------------------------------------------------------------------------
+escreva("Ola")                  printf("Ola");
+leia(idade)                     scanf("%d", &idade);
+-------------------------------------------------------------------------------------------------------------
+int                ->           %d
+float              ->           %f
+char               ->           %c
+char[]             ->           %s
+%.2f               ->           float com 2 casas decimais
+\n                 ->           quebra de linha
+-------------------------------------------------------------------------------------------------------------
+                                                FUNCOES
+-------------------------------------------------------------------------------------------------------------
+
+              PORTUGOL:                                        C:
+funcao inteiro somar(inteiro a, inteiro b) {        int somar(int a, int b){
+retorne a + b                                       return a + b;
+}                                                   }
+                                                    
+                                  SEM RETORNO EM C:
+                                  void mensagem() {
+                                  printf("Ola");
+                                  }
+-------------------------------------------------------------------------------------------------------------
+                                                VETORES
+-------------------------------------------------------------------------------------------------------------
+
+PORTUGOL:                         C:
+inteiro numeros[5]                int numero[5];
+
+POSICOES:
+numeros[0]
+numeros[1]
+numeros[2]
+numeros[3]
+numeros[4]
+
+-------------------------------------------------------------------------------------------------------------
+                                               MATRIZES
+-------------------------------------------------------------------------------------------------------------
+
+PORTUGOL:                              C:
+inteiro numeros[3][3]             int numeros[3][3];
+
+ACESSAR:
+numeros[linha][coluna]
+
+Exemplo:
+numeros[0][0]
+numeros[0][1]
+numeros[1][0]
+numeros[1][1]
+
+
+-------------------------------------------------------------------------------------------------------------
+                                             BIBLIOTECAS
+-------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+Entrada e saída
+printf(), scanf(), getchar(), puts(), fgets()
+
+#include <stdbool.h>
+Booleanos
+bool, true, false
+
+#include <math.h>
+Matemática
+sqrt(), pow(), sin(), cos(), round(), ceil(), floor()
+
+#include <string.h>
+Strings
+strlen(), strcmp(), strcpy(), strcat()
+
+#include <stdlib.h>
+Utilidades gerais
+system(), rand(), srand(), malloc(), free(), exit()
+Exemplo:
+system("cls");     // Limpa terminal no Windows
+system("pause");   // Pausa no Windows
+
+#include <time.h>
+Data, hora e tempo
+Exemplo:
+time(NULL);
+
+#include <ctype.h>
+Trabalhar com caracteres:
+toupper()   // transforma em maiúsculo
+tolower()   // transforma em minúsculo
+isdigit()   // verifica se é número
+isalpha()   // verifica se é letra
+isspace()   // verifica espaço
+
+#include <limits.h>
+Limites dos tipos inteiros:
+INT_MAX
+INT_MIN
+CHAR_MAX
+
+#include <float.h>
+Limites de float/double:
+FLT_MAX
+FLT_MIN
+DBL_MAX
+
+#include <locale.h>
+Configuração de idioma/localização:
+setlocale(LC_ALL, "");
+Pode ajudar com caracteres e configurações
+regionais, dependendo do terminal/sistema.
+
+#include <assert.h>
+Testes simples durante desenvolvimento:
+assert(numero >= 0);
+Se a condição for falsa, o programa acusa
+falha durante a execução.
+
+-------------------------------------------------------------------------------------------------------------
+                                              WINDOWS
+-------------------------------------------------------------------------------------------------------------
+
+#include <windows.h>
+Funções específicas do Windows.:
+Sleep()
+Beep()
+SetConsoleTextAttribute()
+GetStdHandle()
+etc.
+Exemplos:
+Sleep(1000);
+// Espera 1000 milissegundos = 1 segundo
+
+Beep(500, 1000);
+// Frequência: 500 Hz
+// Duração: 1000 ms
+
+-------------------------------------------------------------------------------------------------------------
+                                                CONIO.H
+-------------------------------------------------------------------------------------------------------------
+
+#include <conio.h>
+Biblioteca comum em compiladores Windows,
+mas NÃO faz parte do padrão oficial do C.
+getch()     // lê tecla sem precisar ENTER
+getche()    // lê e mostra a tecla
+kbhit()     // verifica se uma tecla foi pressionada
+Exemplo:
+char tecla;
+tecla = getch();
+printf("Voce apertou: %c", tecla);
+
+-------------------------------------------------------------------------------------------------------------
+                                        ALGUMAS COMBINAÇÕES LEGAIS
+-------------------------------------------------------------------------------------------------------------
+
+stdio.h
+stdlib.h
+time.h
+→ Joguinhos, números aleatórios, menus
+
+stdio.h
+conio.h
+→ Entrada pelo teclado sem ENTER
+
+stdio.h
+windows.h
+→ Sons, pausas e recursos do Windows
+
+stdio.h
+string.h
+ctype.h
+→ Trabalhar com nomes, textos e caracteres
+
+stdio.h
+math.h
+→ Calculadoras e programas matemáticos

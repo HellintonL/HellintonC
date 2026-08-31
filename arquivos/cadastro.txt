@@ -1,0 +1,15 @@
+Nome: Hellinton Lima
+Tipo de veiculo: carro
+Placa do veiculo: ABC12DE
+Tempo de estadia: 3.00 horas
+
+Nome: Silvana Lima
+Tipo de veiculo: moto
+Placa do veiculo: ABC12ED
+Tempo de estadia: 5.00 horas
+
+Nome: ADC
+Tipo de veiculo: carro
+Placa do veiculo: ABC23DE
+Tempo de estadia: 7.00 horas
+

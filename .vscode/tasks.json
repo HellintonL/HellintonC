@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar",
+            "type": "process",
+            "command": "C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\gcc.exe",
+            "args": [
+                "main.c",
+                "-o",
+                "main.exe"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Executar",
+            "type": "process",
+            "command": "${workspaceFolder}\\main.exe",
+            "dependsOn": "Compilar",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compilar e Executar C",
+            "dependsOn": [
+                "Executar"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
