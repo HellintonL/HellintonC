@@ -49,7 +49,7 @@ int contarVeiculosEstacionados() {
 
 }
 
-void arquivos() {
+int arquivos() {
 
   int opcaomenu = 20;
 
@@ -112,6 +112,9 @@ void arquivos() {
     }
 
   }while(opcaomenu != 7);
+
+  return 0;
+  
 }
 
 void registrarEntrada() {

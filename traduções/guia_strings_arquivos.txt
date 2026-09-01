@@ -1,0 +1,650 @@
+GUIA DE ESTUDO — STRINGS E ARQUIVOS EM C
+Baseado no código do Sistema de Estacionamento SENAI
+
+============================================================
+1. BIBLIOTECAS
+============================================================
+
+#include <stdio.h>
+    Biblioteca usada para entrada e saída de dados.
+    Exemplos no seu projeto:
+    printf(), scanf(), fopen(), fclose(), fgets(),
+    fprintf(), fscanf(), sscanf().
+
+#include <stdlib.h>
+    Funções gerais.
+    No seu código:
+    system("cls");
+    system("pause");
+
+#include <string.h>
+    Biblioteca para trabalhar com strings.
+    No seu código:
+    strcpy(), strcmp(), strstr().
+
+#include <windows.h>
+    Usada no seu projeto junto ao Windows.
+    Não é uma biblioteca de strings.
+
+
+============================================================
+2. O QUE É UMA STRING EM C?
+============================================================
+
+Em C, uma string é um conjunto de caracteres terminado
+por '\0' (caractere nulo).
+
+Exemplo:
+
+char nome[50];
+
+Isso reserva espaço para até 49 caracteres + '\0'.
+
+Exemplo de conteúdo:
+
+nome = "Hellinton Lima"
+
+Na memória, a ideia é:
+
+H e l l i n t o n ... \0
+
+
+============================================================
+3. char
+============================================================
+
+char guarda UM caractere.
+
+Exemplo:
+
+char continuar;
+
+continuar = 's';
+
+Observe as aspas simples:
+
+'s'
+
+Para uma string, usamos aspas duplas:
+
+"carro"
+
+
+============================================================
+4. char nome[50]
+============================================================
+
+char nome[50];
+
+Cria uma variável capaz de armazenar uma string.
+
+Os 50 espaços incluem o caractere '\0'.
+
+Por isso, na prática, usamos no máximo 49 caracteres
+quando queremos garantir espaço para o '\0'.
+
+
+============================================================
+5. scanf() PARA LER STRING
+============================================================
+
+No seu código:
+
+scanf(" %49[^\n]", veiculo.nome);
+
+Vamos quebrar:
+
+scanf()
+    Lê dados digitados pelo usuário.
+
+" %49[^\n]"
+    É o formato usado para ler uma string com espaços.
+
+O espaço antes de %:
+    Ignora espaços, ENTERs e quebras de linha que ficaram
+    no buffer de entrada.
+
+%49
+    Limita a leitura a 49 caracteres.
+    Isso evita ultrapassar o tamanho de nome[50].
+
+[^\n]
+    Significa: leia tudo até encontrar '\n'.
+
+Por isso:
+
+Hellinton Lima
+
+é lido inteiro, incluindo o espaço.
+
+
+============================================================
+6. scanf("%7s", placa)
+============================================================
+
+No seu código:
+
+scanf("%7s", veiculo.placa);
+
+%s
+    Lê uma string sem espaços.
+
+%7s
+    Lê no máximo 7 caracteres.
+
+Isso combina com:
+
+char placa[8];
+
+Porque a placa tem até 7 caracteres e ainda precisa do '\0'.
+
+
+============================================================
+7. strcpy()
+============================================================
+
+strcpy() = STRING COPY
+(copia uma string para outra)
+
+No seu código:
+
+strcpy(veiculo.tipo, "carro");
+
+Significa:
+
+copie "carro" para veiculo.tipo.
+
+Outro exemplo:
+
+strcpy(veiculo.tipo, "moto");
+
+
+IMPORTANTE:
+
+Não fazemos:
+
+veiculo.tipo = "carro";
+
+Em C, arrays de char não são atribuídos dessa maneira.
+
+Usamos strcpy().
+
+
+============================================================
+8. strcmp()
+============================================================
+
+strcmp() = STRING COMPARE
+(compara duas strings)
+
+No seu código:
+
+strcmp(veiculo[encontrado].tipo, "carro") == 0
+
+Significa:
+
+"o conteúdo da string é exatamente igual a 'carro'?"
+
+strcmp() retorna:
+
+0  -> strings iguais
+valor diferente de 0 -> strings diferentes
+
+Exemplo:
+
+if(strcmp(tipo, "carro") == 0) {
+    printf("É carro");
+}
+
+
+============================================================
+9. strstr()
+============================================================
+
+strstr() procura uma string dentro de outra string.
+
+No seu código:
+
+if(strstr(linha, "Nome: ") != NULL)
+
+Significa:
+
+"existe 'Nome: ' dentro da linha?"
+
+Exemplo:
+
+linha:
+"Nome: Hellinton Lima\n"
+
+strstr(linha, "Nome: ")
+    encontra "Nome: "
+
+Se encontrar:
+    retorna um endereço (ponteiro)
+
+Se não encontrar:
+    retorna NULL
+
+
+============================================================
+10. fgets()
+============================================================
+
+No seu código:
+
+fgets(linha, sizeof(linha), arquivos);
+
+Lê uma linha do arquivo.
+
+linha
+    Variável onde o texto será armazenado.
+
+sizeof(linha)
+    Informa o tamanho disponível.
+
+arquivos
+    Arquivo que está sendo lido.
+
+Exemplo de arquivo:
+
+Nome: Hellinton Lima
+Tipo de veiculo: carro
+Placa do veiculo: ABC12DE
+
+fgets() vai lendo uma linha por vez.
+
+
+============================================================
+11. sscanf()
+============================================================
+
+sscanf() é parecido com scanf(),
+mas lê dados de uma STRING.
+
+Exemplo do seu código:
+
+sscanf(linha, "Nome: %49[^\n]", nome);
+
+Aqui:
+
+linha
+    É a string que será analisada.
+
+"Nome: %49[^\n]"
+    Diz qual formato estamos procurando.
+
+nome
+    Recebe o conteúdo encontrado.
+
+Diferença:
+
+scanf()
+    lê do teclado.
+
+sscanf()
+    lê de uma string.
+
+
+============================================================
+12. sscanf() COM double
+============================================================
+
+No seu código:
+
+sscanf(linha,
+       "Tempo de estadia: %lf",
+       &veiculo[quantidade].tempoEstadia);
+
+Se a linha for:
+
+Tempo de estadia: 3.00 horas
+
+O %lf pega:
+
+3.00
+
+e coloca dentro de:
+
+veiculo[quantidade].tempoEstadia
+
+
+============================================================
+13. %f E %lf
+============================================================
+
+Para printf():
+
+%.2f
+
+Mostra um número com 2 casas decimais.
+
+Exemplo:
+
+20.00
+
+Para scanf() com double:
+
+%lf
+
+Exemplo:
+
+double tempo;
+
+scanf("%lf", &tempo);
+
+
+============================================================
+14. & NO SCANF
+============================================================
+
+No seu código:
+
+scanf("%lf", &veiculo.tempoEstadia);
+
+O & significa:
+
+"passe o endereço dessa variável".
+
+scanf precisa saber ONDE colocar o valor digitado.
+
+Exemplo:
+
+int idade;
+
+scanf("%d", &idade);
+
+
+Com strings, normalmente NÃO usamos &:
+
+scanf("%7s", veiculo.placa);
+
+Porque o nome do array já representa o endereço inicial
+da área de memória.
+
+
+============================================================
+15. fprintf()
+============================================================
+
+fprintf() escreve em um arquivo.
+
+Exemplo:
+
+fprintf(arquivos, "Nome: %s\n", veiculo.nome);
+
+arquivos
+    arquivo onde será escrito.
+
+"Nome: %s\n"
+    texto/formato.
+
+veiculo.nome
+    valor que substituirá %s.
+
+\n
+    pula para a próxima linha.
+
+
+============================================================
+16. %s
+============================================================
+
+%s significa STRING.
+
+Exemplo:
+
+printf("%s", nome);
+
+Se nome contém:
+
+Hellinton
+
+o resultado será:
+
+Hellinton
+
+
+============================================================
+17. %d
+============================================================
+
+%d é usado para números inteiros.
+
+Exemplo:
+
+int idade = 30;
+
+printf("%d", idade);
+
+
+============================================================
+18. %.2f
+============================================================
+
+Usado para mostrar números decimais com 2 casas.
+
+Exemplo:
+
+double valor = 20;
+
+printf("%.2f", valor);
+
+Resultado:
+
+20.00
+
+No seu estacionamento:
+
+fprintf(arquivos,
+        "Tempo de estadia: %.2f horas\n",
+        veiculo.tempoEstadia);
+
+
+============================================================
+19. ARQUIVOS — fopen()
+============================================================
+
+fopen() abre um arquivo.
+
+Exemplo:
+
+arquivos = fopen("arquivos/cadastro.txt", "a");
+
+"a"
+    abre para adicionar conteúdo no final.
+
+Outros modos:
+
+"r"
+    leitura.
+
+"w"
+    escrita/substituição.
+
+"a"
+    adicionar no final.
+
+
+============================================================
+20. fclose()
+============================================================
+
+Depois de terminar de usar um arquivo:
+
+fclose(arquivos);
+
+É importante fechar os arquivos corretamente.
+
+
+============================================================
+21. NULL
+============================================================
+
+No seu código:
+
+if(arquivos == NULL) {
+    printf("Erro ao abrir o arquivo!");
+}
+
+NULL significa que não foi obtido um endereço válido.
+
+Em fopen(), normalmente significa que o arquivo não pôde
+ser aberto.
+
+
+============================================================
+22. COMO SEU CADASTRO É LIDO
+============================================================
+
+Seu cadastro possui:
+
+Nome: Hellinton Lima
+Tipo de veiculo: carro
+Placa do veiculo: ABC12DE
+Tempo de estadia: 3.00 horas
+
+A função registrarSaida() faz:
+
+fgets()
+    pega uma linha.
+
+strstr()
+    verifica qual tipo de linha é.
+
+sscanf()
+    extrai o conteúdo.
+
+Exemplo:
+
+if(strstr(linha, "Placa do veiculo: ") != NULL) {
+    sscanf(linha,
+           "Placa do veiculo: %7[^\n]",
+           veiculo[quantidade].placa);
+}
+
+
+============================================================
+23. DIFERENÇA ENTRE AS PRINCIPAIS FUNÇÕES DE STRING
+============================================================
+
+strcpy()
+    COPIA
+
+    strcpy(destino, origem);
+
+
+strcmp()
+    COMPARA
+
+    strcmp(string1, string2);
+
+
+strstr()
+    PROCURA
+
+    strstr(string, trecho);
+
+
+strlen()
+    (não usado atualmente no seu código)
+    DESCOBRE O TAMANHO da string.
+
+
+============================================================
+24. RESUMO RÁPIDO
+============================================================
+
+%s
+    string
+
+%c
+    caractere
+
+%d
+    inteiro
+
+%f
+    float / impressão de decimal
+
+%lf
+    double em scanf/sscanf
+
+\n
+    nova linha
+
+\0
+    final de uma string
+
+&
+    endereço da variável
+
+strcpy()
+    copia string
+
+strcmp()
+    compara strings
+
+strstr()
+    procura trecho dentro de string
+
+scanf()
+    lê do teclado
+
+fgets()
+    lê uma linha
+
+sscanf()
+    lê dados de uma string
+
+printf()
+    mostra na tela
+
+fprintf()
+    escreve em arquivo
+
+fopen()
+    abre arquivo
+
+fclose()
+    fecha arquivo
+
+NULL
+    indica ausência de endereço/resultado válido
+
+
+============================================================
+25. EXEMPLO COMPLETO DO RACIOCÍNIO
+============================================================
+
+Linha do arquivo:
+
+"Placa do veiculo: ABC12DE\n"
+
+1. fgets() lê a linha:
+
+fgets(linha, sizeof(linha), arquivos);
+
+2. strstr() verifica se é uma linha de placa:
+
+strstr(linha, "Placa do veiculo: ")
+
+3. sscanf() extrai a placa:
+
+sscanf(linha,
+       "Placa do veiculo: %7[^\n]",
+       veiculo[quantidade].placa);
+
+4. A placa fica armazenada em:
+
+veiculo[quantidade].placa
+
+5. Depois podemos comparar:
+
+strcmp(veiculo[i].placa, placa) == 0
+
+Assim encontramos o veículo.
+
+
+============================================================
+FIM DO GUIA
+============================================================
