@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define TOTAL_VAGAS = 20;
+#define TOTAL_VAGAS 20;
 
 void registrarEntrada();
 void registrarSaida();
